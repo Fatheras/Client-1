@@ -1,0 +1,13 @@
+<div style="display: flex; align-items: center;">
+    <ul style="margin-right: 20px">
+        <li><b>Id</b>: {{user?.id}}</li>
+        <li><b>Firstname</b>: {{user?.firstname}}</li>
+        <li><b>Lastname</b>: {{user?.lastname}}</li>
+        <li><b>Phone</b>: {{user?.phone}}</li>
+        <li><b>Adress</b>: {{user?.address}}</li>
+        </ul>
+    <div>
+        <button type="button">Update</button>
+        <button (click)="deleteUser()" type="button">Delete</button>
+    </div>
+</div>
