@@ -3,34 +3,36 @@ import { NgModule } from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UsersListComponent } from './components/users-list.component';
-import { EditUserComponent } from './components/edit-user.component';
 import { UserComponent } from './user.component';
 import { UsersListItemComponent } from './components/users-list-item.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AddItemComponent } from './components/add-item.component';
 
 const appRoutes: Routes = [
   { path: '', component: UsersListComponent},
-  { path: ':id', component: EditUserComponent}
+  { path: ':id', component: UsersListItemComponent}
 ];
 
 @NgModule({
   declarations: [
     UserComponent,
     UsersListComponent,
-    EditUserComponent,
+    AddItemComponent,
     UsersListItemComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes),
     CommonModule
   ],
   exports: [
       UserComponent
-  ],
-  providers: [],
+  ]
 
 })
 export class UserModule { }

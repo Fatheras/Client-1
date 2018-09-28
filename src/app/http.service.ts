@@ -24,4 +24,12 @@ export class HttpService {
     deleteUser(id: number) {
         return this.http.delete<IUser>(`${this.url}/${id}`);
     }
+
+    putUser(id: number, model: IUser) {
+        return this.http.put<IUser>(`${this.url}/${id}`, model);
+    }
+
+    postUser(model: Object) {
+        return this.http.post<Object>(this.url, model);
+    }
 }

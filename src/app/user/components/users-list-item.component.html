@@ -1,13 +1,79 @@
-<div style="display: flex; align-items: center;">
-    <ul style="margin-right: 20px">
-        <li><b>Id</b>: {{user?.id}}</li>
-        <li><b>Firstname</b>: {{user?.firstname}}</li>
-        <li><b>Lastname</b>: {{user?.lastname}}</li>
-        <li><b>Phone</b>: {{user?.phone}}</li>
-        <li><b>Adress</b>: {{user?.address}}</li>
-        </ul>
-    <div>
-        <button type="button">Update</button>
-        <button (click)="deleteUser()" type="button">Delete</button>
+
+<div class="p-2" [ngSwitch]="itemMode">
+    <div class="container p-3 bg-light" *ngSwitchCase="'commonMode'">
+        <div class="row mb-3">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="container">
+                        <ul class="list-group">
+                            <li class="list-group-item"><b>Id</b>: {{user?.id}}</li>
+                            <li class="list-group-item"><b>Firstname</b>: {{user?.firstname}}</li>
+                            <li class="list-group-item"><b>Lastname</b>: {{user?.lastname}}</li>
+                            <li class="list-group-item"><b>Phone</b>: {{user?.phone}}</li>
+                            <li class="list-group-item"><b>Adress</b>: {{user?.address}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="row">
+            <div class="container">
+                <div class="row justify-content-around">
+                    <div class="col-4">
+                        <button class="btn btn-primary" (click)="editUser()" type="button">Update</button>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-danger" (click)="deleteUser()" type="button">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container p-3 bg-light" *ngSwitchCase="'editMode'">
+        <h1>User Edit</h1>
+        <form [formGroup]="profileForm">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Firstname</span>
+                </div>
+                <input class="form-control" formControlName="firstname" id="firstname" type="text">
+            </div>
+            <br>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Lastname</span>
+                </div>
+                <input class="form-control" formControlName="lastname" id="lastname" type="text">
+            </div>
+            <br>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Address</span>
+                </div>
+                <input class="form-control" formControlName="address" id="address" type="text">
+            </div>
+            <br>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Phone</span>
+                </div>
+                <input class="form-control" formControlName="phone" id="phone" type="text">
+            </div>
+            <br><br>
+
+            <div class="container">
+                <div class="row justify-content-around">
+                    <div class="col-4">
+                        <button class="btn btn-success" (click)="send()">OK</button>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-danger" (click)="cancel()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
+

@@ -14,19 +14,6 @@ export class UsersListComponent implements OnInit {
 
   }
 
-  @Output() delete: EventEmitter<any> = new EventEmitter();
-
-  public onDelete(id: number) {
-
-    this.delete.emit(id);
-
-    this.httpService.deleteUser(id)
-       .subscribe(() => {
-
-         this.getUsers();
-    });
-  }
-
   public ngOnInit() {
     this.getUsers();
   }
