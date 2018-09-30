@@ -33,40 +33,52 @@
 
     <div class="container p-3 bg-light" *ngSwitchCase="'editMode'">
         <h1>User Edit</h1>
-        <form [formGroup]="profileForm">
+        <form (ngSubmit)="send()" [formGroup]="profileForm">
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-default">Firstname</span>
                 </div>
-                <input class="form-control" formControlName="firstname" id="firstname" type="text">
+                <input class="form-control" formControlName="firstname" id="firstname" type="text" required>
+                <div class="warning-container" *ngIf="submitted && f.firstname.errors">
+                    <div *ngIf="f.firstname.errors.required"><i class="fas fa-exclamation-triangle"></i></div>
+                </div>
             </div>
             <br>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-default">Lastname</span>
                 </div>
-                <input class="form-control" formControlName="lastname" id="lastname" type="text">
+                <input class="form-control" formControlName="lastname" id="lastname" type="text" required>
+                <div class="warning-container" *ngIf="submitted && f.lastname.errors">
+                    <div *ngIf="f.lastname.errors.required"><i class="fas fa-exclamation-triangle"></i></div>
+                </div>
             </div>
             <br>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-default">Address</span>
                 </div>
-                <input class="form-control" formControlName="address" id="address" type="text">
+                <input class="form-control" formControlName="address" id="address" type="text" required>
+                <div class="warning-container" *ngIf="submitted && f.address.errors">
+                    <div *ngIf="f.address.errors.required"><i class="fas fa-exclamation-triangle"></i></div>
+                </div>
             </div>
             <br>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-default">Phone</span>
                 </div>
-                <input class="form-control" formControlName="phone" id="phone" type="text">
+                <input class="form-control" formControlName="phone" id="phone" type="text" required>
+                <div class="warning-container" *ngIf="submitted && f.phone.errors">
+                    <div *ngIf="f.phone.errors.required"><i class="fas fa-exclamation-triangle"></i></div>
+                </div>
             </div>
             <br><br>
 
             <div class="container">
                 <div class="row justify-content-around">
                     <div class="col-4">
-                        <button class="btn btn-success" (click)="send()">OK</button>
+                        <button type="submit" class="btn btn-success">OK</button>
                     </div>
                     <div class="col-4">
                         <button class="btn btn-danger" (click)="cancel()">Cancel</button>

@@ -4,7 +4,7 @@
             <app-users-list-item (delete)="getUsers()" *ngFor="let user of users" [user]="user"></app-users-list-item>
         </div>
         <div class="col-8">
-            <app-add-item></app-add-item>
+            <app-add-item (add)="getUsers()"></app-add-item>
         </div>
     </div>
 </div>

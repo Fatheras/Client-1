@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { HttpService } from '../../http.service';
-import { IUser } from '../users';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { HttpService } from '../../../http.service';
+import { IUser } from '../../users';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UsersListComponent } from '../users-list/users-list.component';
 
 
 @Component({
@@ -20,17 +21,28 @@ export class AddItemComponent implements OnInit {
     phone: new FormControl('', [Validators.required])
   });
 
+  submitted = false;
+
   constructor(private httpService: HttpService, private activateRoute: ActivatedRoute, private router: Router ) {
 
   }
 
+  @Output() add: EventEmitter<any> = new EventEmitter();
+
+  get f() { return this.profileForm.controls; }
+
   addUser() {
-    this.httpService.postUser({
+
+    this.submitted = true;
+
+    if (this.profileForm.valid) {
+      this.httpService.postUser({
         firstname: this.profileForm.controls['firstname'].value,
         lastname: this.profileForm.controls['lastname'].value,
         address: this.profileForm.controls['address'].value,
         phone: this.profileForm.controls['phone'].value
-    }).subscribe();
+    }).subscribe(() => this.add.emit());
+    }
   }
 
   ngOnInit() {
