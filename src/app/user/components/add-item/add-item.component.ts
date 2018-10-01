@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { HttpService } from '../../../http.service';
-import { IUser } from '../../users';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UsersListComponent } from '../users-list/users-list.component';
+
 
 
 @Component({

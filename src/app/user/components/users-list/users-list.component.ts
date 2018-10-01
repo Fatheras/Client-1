@@ -11,7 +11,6 @@ export class UsersListComponent implements OnInit {
 
   public users: IUser[];
 
-
   constructor(private httpService: HttpService) {
 
   }

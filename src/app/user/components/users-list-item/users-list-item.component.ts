@@ -25,31 +25,24 @@ export class UsersListItemComponent implements OnInit {
 
   submitted = false;
 
-
   itemMode: String;
 
   constructor(private httpService: HttpService, private activateRoute: ActivatedRoute, private router: Router ) {
 
   }
 
-  deleteUser() {
+  get f() { return this.profileForm.controls; }
+
+  public deleteUser() {
 
     this.httpService.deleteUser(this.user.id)
        .subscribe(() => {
           this.delete.emit();
-          this.router.navigate(['']);
     });
 
   }
 
-  get f() { return this.profileForm.controls; }
-
-  cancel() {
-    this.itemMode = 'commonMode';
-  }
-
-  editUser() {
-    this.itemMode = 'editMode';
+  public editUser() {
 
     this.profileForm.setValue(
       {
@@ -59,9 +52,15 @@ export class UsersListItemComponent implements OnInit {
       phone: this.user.phone
       }
     );
+
+    this.router.navigate([this.user.id]);
   }
 
-  send() {
+  public cancel() {
+    this.router.navigate(['']);
+  }
+
+  public send() {
     this.submitted = true;
 
     if (this.profileForm.valid) {
@@ -72,8 +71,7 @@ export class UsersListItemComponent implements OnInit {
         address: this.profileForm.controls['address'].value,
         phone: this.profileForm.controls['phone'].value
       }).subscribe((data) => {
-        this.itemMode = 'commonMode';
-        this.user = data;
+        this.router.navigate(['']);
       } );
     }
   }
@@ -82,11 +80,18 @@ export class UsersListItemComponent implements OnInit {
     this.itemMode = 'commonMode';
 
     this.activateRoute.params.subscribe((params: {id: number}) => {
-
       if (params.id) {
+        this.itemMode = 'editMode';
         this.httpService.getUser(params.id).subscribe(data => {
           this.user = data;
-        }, error => this.router.navigate(['error/err']));
+          this.profileForm.setValue({
+            firstname: this.user.firstname,
+            lastname: this.user.lastname,
+            address: this.user.address,
+            phone: this.user.phone
+          }
+          );
+        });
       }
     });
   }
