@@ -13,9 +13,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class UsersListItemComponent implements OnInit {
 
   @Input() user: IUser;
-  @Output() delete: EventEmitter<any> = new EventEmitter();
+  @Output() delete: EventEmitter<number> = new EventEmitter();
+  @Output() update: EventEmitter<IUser> = new EventEmitter();
 
-  profileForm = new FormGroup({
+  public profileForm = new FormGroup({
     firstname: new FormControl('', [Validators.required]),
     lastname: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
@@ -23,22 +24,19 @@ export class UsersListItemComponent implements OnInit {
   });
 
 
-  submitted = false;
+  public submitted = false;
 
-  itemMode: String;
+  public itemMode: String;
 
   constructor(private httpService: HttpService, private activateRoute: ActivatedRoute, private router: Router ) {
 
   }
 
-  get f() { return this.profileForm.controls; }
+  public get controls() { return this.profileForm.controls; }
 
   public deleteUser() {
 
-    this.httpService.deleteUser(this.user.id)
-       .subscribe(() => {
-          this.delete.emit();
-    });
+    this.delete.emit(this.user.id);
 
   }
 
@@ -76,7 +74,7 @@ export class UsersListItemComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.itemMode = 'commonMode';
 
     this.activateRoute.params.subscribe((params: {id: number}) => {
@@ -84,12 +82,13 @@ export class UsersListItemComponent implements OnInit {
         this.itemMode = 'editMode';
         this.httpService.getUser(params.id).subscribe(data => {
           this.user = data;
-          this.profileForm.setValue({
-            firstname: this.user.firstname,
-            lastname: this.user.lastname,
-            address: this.user.address,
-            phone: this.user.phone
-          }
+          this.profileForm.setValue(
+            {
+              firstname: this.user.firstname,
+              lastname: this.user.lastname,
+              address: this.user.address,
+              phone: this.user.phone
+            }
           );
         });
       }

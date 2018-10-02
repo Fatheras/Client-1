@@ -1,10 +1,10 @@
 <div class="container bg-secondary">
     <div class="row">
         <div style="height: 100vh; overflow-y: scroll;" class="col-4 bg-dark">
-            <app-users-list-item (delete)="getUsers()" *ngFor="let user of users" [user]="user"></app-users-list-item>
+            <app-users-list-item (delete)="deleteUser($event)" *ngFor="let user of users" [user]="user"></app-users-list-item>
         </div>
         <div class="col-8">
-            <app-add-item (add)="getUsers()"></app-add-item>
+            <app-add-item (add)="addUser($event)"></app-add-item>
         </div>
     </div>
 </div>

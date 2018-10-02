@@ -8,8 +8,8 @@
                 <span class="input-group-text" id="inputGroup-sizing-default">Firstname</span>
             </div>
             <input class="form-control" formControlName="firstname" id="firstname" type="text" required>
-            <div class="warning-container" *ngIf="submitted && f.firstname.errors">
-                <div *ngIf="f.firstname.errors.required"><i class="fas fa-exclamation-triangle"></i></div>
+            <div class="warning-container" *ngIf="submitted && constrols.firstname.errors">
+                <div *ngIf="constrols.firstname.errors.required"><i class="fas fa-exclamation-triangle"></i></div>
             </div>
         </div>
         <br>
@@ -18,8 +18,8 @@
                 <span class="input-group-text" id="inputGroup-sizing-default">Lastname</span>
             </div>
             <input class="form-control" formControlName="lastname" id="lastname" type="text" required>
-            <div class="warning-container" *ngIf="submitted && f.lastname.errors">
-                <div *ngIf="f.lastname.errors.required"><i class="fas fa-exclamation-triangle"></i></div>
+            <div class="warning-container" *ngIf="submitted && constrols.lastname.errors">
+                <div *ngIf="constrols.lastname.errors.required"><i class="fas fa-exclamation-triangle"></i></div>
             </div>
         </div>
         <br>
@@ -28,8 +28,8 @@
                 <span class="input-group-text" id="inputGroup-sizing-default">Address</span>
             </div>
             <input class="form-control" formControlName="address" id="address" type="text" required>
-            <div class="warning-container" *ngIf="submitted && f.address.errors">
-                <div *ngIf="f.address.errors.required"><i class="fas fa-exclamation-triangle"></i></div>
+            <div class="warning-container" *ngIf="submitted && constrols.address.errors">
+                <div *ngIf="constrols.address.errors.required"><i class="fas fa-exclamation-triangle"></i></div>
             </div>
         </div>
         <br>
@@ -38,8 +38,8 @@
                 <span class="input-group-text" id="inputGroup-sizing-default">Phone</span>
             </div>          
             <input class="form-control" formControlName="phone" id="phone" type="text" required>
-            <div class="warning-container" *ngIf="submitted && f.phone.errors">
-                <div *ngIf="f.phone.errors.required"><i class="fas fa-exclamation-triangle"></i></div>
+            <div class="warning-container" *ngIf="submitted && constrols.phone.errors">
+                <div *ngIf="constrols.phone.errors.required"><i class="fas fa-exclamation-triangle"></i></div>
             </div>
         </div>             
         <br><br>
