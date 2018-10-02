@@ -22,7 +22,6 @@ export class EditItemComponent implements OnInit {
 
   }
 
-
   public cancel() {
     this.router.navigate(['/users']);
   }
@@ -41,9 +40,9 @@ export class EditItemComponent implements OnInit {
 
   public ngOnInit() {
     this.activateRoute.params.subscribe((params: {id: number}) => {
-        this.httpService.getUser(params.id).subscribe(data => {
+      this.httpService.getUser(params.id).subscribe(data => {
             this.user = data;
-            this._userFormComponent.profileForm.patchValue(this.user);
+            setTimeout(() => { this._userFormComponent.profileForm.patchValue(this.user); }, 0);
         });
     });
   }

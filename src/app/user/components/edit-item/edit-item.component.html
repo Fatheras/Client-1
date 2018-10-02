@@ -1,15 +1,20 @@
-<div class="container p-3 bg-light">
-    <h1>User Edit</h1>
-    <app-user-form (sub)="send()">
-        <div class="container">
-            <div class="row justify-content-around">
-                <div class="col-4">
-                    <button type="submit" class="btn btn-success">OK</button>
-                </div>
-                <div class="col-4">
-                    <button class="btn btn-danger" (click)="cancel()">Cancel</button>
+<ng-template [ngIf]="user" [ngIfElse]="notFound">
+    <div class="container p-3 bg-light">
+        <h1>User Edit</h1>
+        <app-user-form (sub)="send()">
+            <div class="container">
+                <div class="row justify-content-around">
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-success">OK</button>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-danger" (click)="cancel()">Cancel</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </app-user-form>
-</div>
+        </app-user-form>
+    </div>
+</ng-template>
+<ng-template #notFound>
+    <app-notfound></app-notfound>
+</ng-template>
