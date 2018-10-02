@@ -13,23 +13,23 @@ export class UserService {
 
     }
 
-    getUsers() {
+    public getUsers() {
         return this.http.get<IUser[]>(this.url);
     }
 
-    getUser(id: number) {
+    public getUser(id: number) {
         return this.http.get<IUser>(`${this.url}/${id}`);
     }
 
-    deleteUser(id: number) {
+    public deleteUser(id: number) {
         return this.http.delete<IUser>(`${this.url}/${id}`);
     }
 
-    putUser(id: number, model: IUser) {
+    public putUser(id: number, model: IUser) {
         return this.http.put<IUser>(`${this.url}/${id}`, model);
     }
 
-    postUser(model: IUser) {
+    public postUser(model: IUser) {
         return this.http.post<IUser>(this.url, model);
     }
 }

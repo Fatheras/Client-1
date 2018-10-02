@@ -8,13 +8,11 @@ import { UserService} from './user/services/user.service';
 })
 export class AppComponent implements OnInit {
 
-  public data: Object;
-
   constructor(private httpService: UserService) {
 
   }
 
-  ngOnInit() {
-      this.httpService.getUsers().subscribe(data => this.data = data);
+  public ngOnInit() {
+
   }
 }

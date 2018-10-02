@@ -22,6 +22,10 @@ export class UserFormComponent implements OnInit {
         phone: new FormControl('', [Validators.required])
       });
 
+    constructor() {
+
+    }
+
     public onSubmit() {
 
         this.submitted = true;
@@ -31,11 +35,7 @@ export class UserFormComponent implements OnInit {
         }
     }
 
-    constructor() {
-
-    }
-
-    ngOnInit() {
+    public ngOnInit() {
 
     }
 }
