@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { UserModule } from './user/user.module';
 
 import { HttpClientModule } from '@angular/common/http';
-import { HttpService } from './http.service';
+import { UserService } from './user/services/user.service';
 import { AppRoutingModule } from './app-routing.module';
 
 
@@ -20,7 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
     UserModule,
     AppRoutingModule
   ],
-  providers: [HttpService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

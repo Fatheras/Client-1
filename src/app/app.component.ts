@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService} from './http.service';
+import { UserService} from './user/services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
 
   public data: Object;
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: UserService) {
 
   }
 

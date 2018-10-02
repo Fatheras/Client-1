@@ -1,5 +1,5 @@
-import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
-import { HttpService } from '../../../http.service';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
 import { IUser } from '../../users';
 import { Router } from '@angular/router';
 
@@ -11,12 +11,8 @@ export class UsersListComponent implements OnInit {
 
   public users: IUser[];
 
-  constructor(private httpService: HttpService, private router: Router) {
+  constructor(private httpService: UserService, private router: Router) {
 
-  }
-
-  public ngOnInit() {
-    this.getUsers();
   }
 
   public deleteUser(userId: number) {
@@ -32,5 +28,9 @@ export class UsersListComponent implements OnInit {
 
   public getUsers() {
     this.httpService.getUsers().subscribe(data => this.users = data);
+  }
+
+  public ngOnInit() {
+    this.getUsers();
   }
 }

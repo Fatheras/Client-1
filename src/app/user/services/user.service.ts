@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { IUser } from './user/users';
+import { IUser } from '../users';
 
 
 
 
 @Injectable()
-export class HttpService {
+export class UserService {
 
     private url = 'http://localhost:8080/api/v1/user';
     constructor(private http: HttpClient) {
@@ -29,7 +29,7 @@ export class HttpService {
         return this.http.put<IUser>(`${this.url}/${id}`, model);
     }
 
-    postUser(model: Object) {
-        return this.http.post<Object>(this.url, model);
+    postUser(model: IUser) {
+        return this.http.post<IUser>(this.url, model);
     }
 }
