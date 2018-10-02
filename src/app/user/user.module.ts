@@ -11,12 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { NotFoundComponent } from './components/errors/notfound.component';
+import { UserRoutingModule } from './components/routes/user-routing.module';
 
-const appRoutes: Routes = [
-  { path: '', component: UsersListComponent},
-  { path: ':id', component: UsersListItemComponent},
-  { path: '**',  component: NotFoundComponent }
-];
 
 @NgModule({
   declarations: [
@@ -30,8 +26,8 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    UserRoutingModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
     CommonModule
   ],
   exports: [

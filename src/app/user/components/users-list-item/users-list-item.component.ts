@@ -53,11 +53,11 @@ export class UsersListItemComponent implements OnInit {
       }
     );
 
-    this.router.navigate([this.user.id]);
+    this.router.navigate([`/user/${this.user.id}`]);
   }
 
   public cancel() {
-    this.router.navigate(['']);
+    this.router.navigate(['/users']);
   }
 
   public send() {
@@ -71,7 +71,7 @@ export class UsersListItemComponent implements OnInit {
         address: this.profileForm.controls['address'].value,
         phone: this.profileForm.controls['phone'].value
       }).subscribe((data) => {
-        this.router.navigate(['']);
+        this.router.navigate(['/users']);
       } );
     }
   }

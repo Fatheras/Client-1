@@ -1,7 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 import { HttpService } from '../../../http.service';
 import { IUser } from '../../users';
-import { UsersListItemComponent } from '../users-list-item/users-list-item.component';
 
 @Component({
   selector: 'app-users-list',
