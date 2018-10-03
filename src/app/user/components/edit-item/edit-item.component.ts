@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { IUser } from '../../users';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -38,11 +38,14 @@ export class EditItemComponent implements OnInit {
     });
   }
 
+
   public ngOnInit() {
     this.activateRoute.params.subscribe((params: {id: number}) => {
       this.httpService.getUser(params.id).subscribe(data => {
             this.user = data;
-            setTimeout(() => { this._userFormComponent.profileForm.patchValue(this.user); }, 0);
+            this._userFormComponent.profileForm.patchValue(this.user);
+        }, () => {
+          this.user = null;
         });
     });
   }
