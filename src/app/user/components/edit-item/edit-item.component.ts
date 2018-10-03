@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/cor
 import { UserService } from '../../services/user.service';
 import { IUser } from '../../users';
 import { ActivatedRoute, Router } from '@angular/router';
+import {Observable, throwError} from 'rxjs';
 import { UserFormComponent } from '../user-form/user-form.component';
 
 
@@ -14,9 +15,7 @@ export class EditItemComponent implements OnInit {
 
   @Input() user: IUser;
 
-  @ViewChild(UserFormComponent)
-  private _userFormComponent: UserFormComponent;
-
+  public reqError;
 
   constructor(private httpService: UserService, private activateRoute: ActivatedRoute, private router: Router ) {
 
@@ -26,14 +25,8 @@ export class EditItemComponent implements OnInit {
     this.router.navigate(['/users']);
   }
 
-  public send() {
-    this.httpService.putUser(this.user.id, {
-        id: this.user.id,
-        firstname: this._userFormComponent.controls['firstname'].value,
-        lastname: this._userFormComponent.controls['lastname'].value,
-        address: this._userFormComponent.controls['address'].value,
-        phone: this._userFormComponent.controls['phone'].value
-    }).subscribe(data => {
+  public send(model: IUser) {
+    this.httpService.putUser(this.user.id, model).subscribe(data => {
         this.router.navigate(['/users']);
     });
   }
@@ -43,9 +36,11 @@ export class EditItemComponent implements OnInit {
     this.activateRoute.params.subscribe((params: {id: number}) => {
       this.httpService.getUser(params.id).subscribe(data => {
             this.user = data;
-            this._userFormComponent.profileForm.patchValue(this.user);
-        }, () => {
+        }, (error) => {
           this.user = null;
+
+          this.reqError = error;
+          return throwError(error);
         });
     });
   }

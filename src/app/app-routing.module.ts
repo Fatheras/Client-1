@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NotFoundComponent } from './user/components/errors/notfound.component';
+import { RequestErrorComponent } from './user/components/errors/request-error.component';
 
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/users', pathMatch: 'full' },
-  { path: '**', component: NotFoundComponent }
+  { path: '**', component: RequestErrorComponent }
 ];
 
 @NgModule({

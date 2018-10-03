@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { IUser } from '../../users';
 
 @Component({
   selector: 'app-user-form',
@@ -9,7 +10,25 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export class UserFormComponent implements OnInit {
 
-    @Output() sub: EventEmitter<FormGroup> = new EventEmitter();
+    private _user: IUser;
+
+    @Input() public set user(model: IUser) {
+        if (model) {
+            this.profileForm.patchValue(model);
+        }
+    }
+    public get user() {
+        this._user = {
+            firstname: this.controls['firstname'].value,
+            lastname: this.controls['lastname'].value,
+            address: this.controls['address'].value,
+            phone: this.controls['phone'].value
+        };
+
+        return this._user;
+    }
+
+    @Output() sub: EventEmitter<IUser> = new EventEmitter();
 
     public submitted = false;
 
@@ -31,7 +50,7 @@ export class UserFormComponent implements OnInit {
         this.submitted = true;
 
         if (this.profileForm.valid) {
-            this.sub.emit();
+            this.sub.emit(this.user);
         }
     }
 

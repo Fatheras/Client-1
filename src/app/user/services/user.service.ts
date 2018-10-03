@@ -1,14 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { IUser } from '../users';
-
+import {environment} from '../../../environments/environment';
 
 
 
 @Injectable()
 export class UserService {
 
-    private url = 'http://localhost:8080/api/v1/user';
+    private url = environment.userUrl;
+
     constructor(private http: HttpClient) {
 
     }

@@ -9,7 +9,7 @@ import { UsersListItemComponent } from './components/users-list-item/users-list-
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddItemComponent } from './components/add-item/add-item.component';
-import { NotFoundComponent } from './components/errors/notfound.component';
+import { RequestErrorComponent } from './components/errors/request-error.component';
 import { UserRoutingModule } from './routes/user-routing.module';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
@@ -19,7 +19,7 @@ import { UserFormComponent } from './components/user-form/user-form.component';
   declarations: [
     UserComponent,
     UsersListComponent,
-    NotFoundComponent,
+    RequestErrorComponent,
     AddItemComponent,
     EditItemComponent,
     UserFormComponent,
