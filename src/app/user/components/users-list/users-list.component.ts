@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { IUser } from '../../users';
+import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,20 +18,32 @@ export class UsersListComponent implements OnInit {
 
   public deleteUser(userId: number) {
     this.httpService.deleteUser(userId)
-       .subscribe(() => {
-          this.getUsers();
-    });
+      .pipe(
+        switchMap(() => this.getUsers())
+      )
+      .subscribe((users: IUser[]) => {
+        this.users = users;
+      });
   }
 
   public addUser(model: IUser) {
-    this.httpService.postUser(model).subscribe(() => this.getUsers());
+    this.httpService.postUser(model)
+    .pipe(
+      switchMap(() => this.getUsers())
+    )
+    .subscribe((users: IUser[]) => {
+      this.users = users;
+    });
   }
 
-  public getUsers() {
-    this.httpService.getUsers().subscribe(data => this.users = data);
+  private getUsers() {
+    return this.httpService.getUsers();
   }
 
   public ngOnInit() {
-    this.getUsers();
+    this.getUsers()
+      .subscribe((users: IUser[]) => {
+        this.users = users;
+      });
   }
 }

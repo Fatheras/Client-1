@@ -4,8 +4,8 @@
             <span class="input-group-text" id="inputGroup-sizing-default">Firstname</span>
         </div>
         <input class="form-control" formControlName="firstname" id="firstname" type="text" required>
-        <div class="warning-container" *ngIf="submitted && controls.firstname.errors">
-            <div *ngIf="controls.firstname.errors.required"><i class="fas fa-exclamation-triangle"></i></div>
+        <div [@openClosed]="(submitted && controls.firstname.errors) ? 'open' : 'closed'" class="warning-container">
+            <div><i class="fas fa-exclamation-triangle"></i></div>
         </div>
     </div>
     <br>
@@ -14,8 +14,8 @@
             <span class="input-group-text" id="inputGroup-sizing-default">Lastname</span>
         </div>
         <input class="form-control" formControlName="lastname" id="lastname" type="text" required>
-        <div class="warning-container" *ngIf="submitted && controls.lastname.errors">
-            <div *ngIf="controls.lastname.errors.required"><i class="fas fa-exclamation-triangle"></i></div>
+        <div [@openClosed]="(submitted && controls.lastname.errors) ? 'open' : 'closed'" class="warning-container">
+            <div><i class="fas fa-exclamation-triangle"></i></div>
         </div>
     </div>
     <br>
@@ -24,8 +24,8 @@
             <span class="input-group-text" id="inputGroup-sizing-default">Address</span>
         </div>
         <input class="form-control" formControlName="address" id="address" type="text" required>
-        <div class="warning-container" *ngIf="submitted && controls.address.errors">
-            <div *ngIf="controls.address.errors.required"><i class="fas fa-exclamation-triangle"></i></div>
+        <div [@openClosed]="(submitted && controls.address.errors) ? 'open' : 'closed'" class="warning-container">
+            <div><i class="fas fa-exclamation-triangle"></i></div>
         </div>
     </div>
     <br>
@@ -34,8 +34,8 @@
             <span class="input-group-text" id="inputGroup-sizing-default">Phone</span>
         </div>
         <input class="form-control" formControlName="phone" id="phone" type="text" required>
-        <div class="warning-container" *ngIf="submitted && controls.phone.errors">
-            <div *ngIf="controls.phone.errors.required"><i class="fas fa-exclamation-triangle"></i></div>
+        <div [@openClosed]="(submitted && controls.phone.errors) ? 'open' : 'closed'" class="warning-container">
+            <div><i class="fas fa-exclamation-triangle"></i></div>
         </div>
     </div>
     <br><br>

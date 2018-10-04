@@ -1,11 +1,37 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IUser } from '../../users';
+import {
+    trigger,
+    state,
+    style,
+    animate,
+    transition
+} from '@angular/animations';
 
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.css']
+  styleUrls: ['./user-form.component.css'],
+  animations: [
+    trigger('openClosed', [
+      state('open', style({
+        visibility: 'visible',
+        opacity: 1
+      })),
+      state('closed', style({
+        visibility: 'hidden',
+        opacity: 0,
+        width: 0
+      })),
+      transition('open => closed', [
+        animate('0.5s')
+      ]),
+      transition('closed => open', [
+        animate('0.5s')
+      ]),
+    ]),
+  ]
 })
 
 export class UserFormComponent implements OnInit {
